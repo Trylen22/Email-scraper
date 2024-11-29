@@ -1,5 +1,7 @@
-imaplib
-email
-json
+google-auth
+google-auth-oauthlib
+google-api-python-client
 pandas
+bs4
 matplotlib
+requests
