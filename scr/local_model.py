@@ -21,22 +21,20 @@ class LocalModel:
         Returns:
             str: The generated summary or an error message if something goes wrong.
         """
-        # Enhanced prompt for better email summarization
-        prompt = f"""Please provide a clear and concise summary of this email. Focus on:
-1. Main topic or purpose
-2. Key points or requests
-3. Important dates or deadlines (if any)
-4. Required actions (if any)
+        # Enhanced prompt for priority-aware summarization
+        prompt = f"""Analyze this email from a student's perspective. Based on these categories:
 
-Keep the summary focused and informative. Ignore any URLs or technical details unless crucial. Be optimal in your summary delivery length.
+HIGH: Assignment deadlines, exam schedules, grades, required actions, registration deadlines
+MEDIUM: Course materials, study resources, office hours, group projects
+LOW: General announcements, optional events, newsletters
 
 Email content:
 {text}
 
-Summary:"""
+Start your response with the priority level in brackets [HIGH/MEDIUM/LOW], then provide a brief, focused summary."""
         
         try:
-            # Run Ollama command without temperature flags
+            # Run Ollama command
             result = subprocess.run(
                 ["ollama", "run", self.model_name],
                 input=prompt,
@@ -51,7 +49,6 @@ Summary:"""
             
             # Clean up and format the summary
             summary = result.stdout.strip()
-            # Remove any system prompts or extra text
             if "Summary:" in summary:
                 summary = summary.split("Summary:")[-1].strip()
             
