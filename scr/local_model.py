@@ -21,31 +21,51 @@ class LocalModel:
         Returns:
             str: The generated summary or an error message if something goes wrong.
         """
-        prompt = f"Summarize the following text:\n{text}"
+        # Enhanced prompt for better email summarization
+        prompt = f"""Please provide a clear and concise summary of this email. Focus on:
+1. Main topic or purpose
+2. Key points or requests
+3. Important dates or deadlines (if any)
+4. Required actions (if any)
+
+Keep the summary focused and informative. Ignore any URLs or technical details unless crucial. Be optimal in your summary delivery length.
+
+Email content:
+{text}
+
+Summary:"""
         
         try:
-            # Run the Ollama command via subprocess, passing the prompt as stdin
+            # Run Ollama command without temperature flags
             result = subprocess.run(
                 ["ollama", "run", self.model_name],
-                input=prompt,  # Pass the prompt as standard input
-                text=True,  # Ensure text mode for inputs/outputs
-                capture_output=True  # Capture both stdout and stderr
+                input=prompt,
+                text=True,
+                capture_output=True
             )
             
-            # Check for errors during subprocess execution
             if result.returncode != 0:
                 error_message = result.stderr.strip()
                 print(f"Error in calling Ollama:\n{error_message}")
                 return f"Error in generating summary: {error_message}"
             
-            # Return the raw output as the summary
-            return result.stdout.strip()
+            # Clean up and format the summary
+            summary = result.stdout.strip()
+            # Remove any system prompts or extra text
+            if "Summary:" in summary:
+                summary = summary.split("Summary:")[-1].strip()
+            
+            return summary
 
         except FileNotFoundError:
             return "Error: Ollama command not found. Ensure Ollama is installed and in your PATH."
         except Exception as e:
             print(f"Unexpected error occurred: {str(e)}")
             return f"Error in generating summary: {str(e)}"
+
+    def __call__(self, text):
+        """Convenience method to allow direct calling of instance."""
+        return self.summarize(text)
 
 
 # Example usage

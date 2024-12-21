@@ -108,6 +108,9 @@ def generate_html_report(processed_emails, output_file):
             .ascii-border {{
                 color: #333;
                 margin: 10px 0;
+                white-space: pre;
+                overflow: visible;
+                width: auto;
             }}
             .links {{
                 margin-top: 15px;
@@ -132,7 +135,7 @@ def generate_html_report(processed_emails, output_file):
             📧 Processed {len(processed_emails)} Emails
         </div>
         
-        <div class="ascii-border">{'='*80}</div>
+        <div class="ascii-border">{'='*105}</div>
     """
     
     for i, email in enumerate(processed_emails, 1):
@@ -165,19 +168,19 @@ def generate_html_report(processed_emails, output_file):
 def generate_text_report(processed_emails, output_file):
     """Generate a human-readable text report of email summaries."""
     with open(output_file, 'w') as f:
-        f.write("\n" + "="*80 + "\n")
-        f.write("                           EMAIL SUMMARY REPORT                           \n")
-        f.write("="*80 + "\n\n")
+        f.write("\n" + "="*105 + "\n")
+        f.write("                                               EMAIL SUMMARY REPORT                                               \n")
+        f.write("="*105 + "\n\n")
         
         for i, email in enumerate(processed_emails, 1):
             f.write(f"📧 Email {i}/{len(processed_emails)}\n")
-            f.write("─"*80 + "\n")
+            f.write("─"*105 + "\n")
             f.write(f"From    : {email['from']}\n")
             f.write(f"Subject : {email['subject']}\n")
             f.write("\nSummary:\n")
             f.write("─"*40 + "\n")
-            # Wrap summary text at 80 characters
-            summary_lines = [email['summary'][i:i+80] for i in range(0, len(email['summary']), 80)]
+            # Wrap summary text at 100 characters instead of 80
+            summary_lines = [email['summary'][i:i+100] for i in range(0, len(email['summary']), 100)]
             for line in summary_lines:
                 f.write(f"{line}\n")
             
@@ -187,4 +190,4 @@ def generate_text_report(processed_emails, output_file):
                 for url in email['urls']:
                     f.write(f"• {url}\n")
             
-            f.write("\n" + "="*80 + "\n\n")
+            f.write("\n" + "="*105 + "\n\n")
