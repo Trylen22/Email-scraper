@@ -1,13 +1,40 @@
 import argparse
 import time
+from pathlib import Path
 from authemail import authenticate_gmail
 from scrape_emails import fetch_emails
 from process_emails import process_data
-from report_generator import generate_json_report
+from report_generator import generate_json_report, generate_html_report, generate_text_report
 from ascii_art import display_welcome_message, show_progress_bar, goodbye_message
 from local_model import LocalModel
+import webbrowser
+import platform
+import subprocess
+import os
+
+def open_file(filepath):
+    """Open a file with the default system application."""
+    filepath = Path(filepath)
+    if not filepath.exists():
+        print(f"Error: File {filepath} not found!")
+        return
+    
+    system = platform.system()
+    try:
+        if system == 'Darwin':       # macOS
+            subprocess.run(['open', filepath])
+        elif system == 'Windows':    # Windows
+            os.startfile(filepath)
+        else:                        # Linux
+            subprocess.run(['xdg-open', filepath])
+    except Exception as e:
+        print(f"Error opening file: {e}")
 
 def main():
+    # Create reports directory if it doesn't exist
+    reports_dir = Path('reports')
+    reports_dir.mkdir(exist_ok=True)
+
     # Start total execution timer
     total_start_time = time.time()
     
@@ -17,10 +44,19 @@ def main():
     # Command-line arguments
     parser = argparse.ArgumentParser(description="Email Scraper CLI")
     parser.add_argument("--max-emails", type=int, default=5, help="Maximum number of emails to fetch (default: 5)")
-    parser.add_argument("--output-file", type=str, default="email_report.json", help="Output file for the report")
+    parser.add_argument("--format", type=str, choices=['json', 'html', 'text'], default='text', 
+                      help="Output format (default: text)")
+    parser.add_argument("--output-file", type=str, help="Output file path (default: based on format)")
     parser.add_argument("--query", type=str, default="", help="Optional query to filter emails")
     parser.add_argument("--debug", action="store_true", help=argparse.SUPPRESS)  # Hidden debug flag
     args = parser.parse_args()
+
+    # Set default output file based on format if not specified
+    if not args.output_file:
+        args.output_file = str(reports_dir / f"email_report.{args.format}")
+    else:
+        # If user provided custom filename, still put it in reports directory
+        args.output_file = str(reports_dir / Path(args.output_file).name)
 
     def debug_print(*print_args, **kwargs):
         if args.debug:
@@ -85,9 +121,20 @@ def main():
     # Show progress bar for processing emails
     show_progress_bar(total_steps=5, task="Generating report...")
 
-    # Step 5: Generate the report
+    # Step 5: Generate and display the report
     report_start = time.time()
-    generate_json_report(processed_emails, output_file)
+    if args.format == 'json':
+        generate_json_report(processed_emails, args.output_file)
+        print(f"\nJSON report saved to: {args.output_file}")
+    elif args.format == 'html':
+        generate_html_report(processed_emails, args.output_file)
+        print(f"\nOpening HTML report in your browser...")
+        webbrowser.open(f"file://{Path(args.output_file).absolute()}")
+    else:  # text format
+        generate_text_report(processed_emails, args.output_file)
+        print(f"\nOpening text report...")
+        open_file(args.output_file)
+    
     report_time = time.time() - report_start
     debug_print(f"Report generation time: {report_time:.2f} seconds")
 

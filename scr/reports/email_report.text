@@ -1,0 +1,83 @@
+
+================================================================================
+                           EMAIL SUMMARY REPORT                           
+================================================================================
+
+📧 Email 1/5
+────────────────────────────────────────────────────────────────────────────────
+From    : GitGuardian <security@getgitguardian.com>
+Subject : [Trylen22/Email-scraper] Generic High Entropy Secret exposed on GitHub
+
+Summary:
+────────────────────────────────────────
+The text is a notification about a Generic High Entropy Secret being potentially
+ exposed on the user's GitHub account in the repository named "Trylen22/Email-sc
+raper". The secret was pushed on December 21st, 2024. This alert is part of GitG
+uardian's Good Samaritan program which proactively alerts users about potential 
+secret leaks.
+
+The user has the option to mark this as a false positive if they 
+believe it's not a real secret or has never been one. They can also take steps t
+o remediate the exposed secret using GitGuardian's cli tool 'ggshield'. The user
+ can also choose to unsubscribe from these alerts.
+
+================================================================================
+
+📧 Email 2/5
+────────────────────────────────────────────────────────────────────────────────
+From    : GitHub <support@github.com>
+Subject : [Trylen22/Email-scraper] Possible valid secrets detected
+
+Summary:
+────────────────────────────────────────
+The text is a notification from GitHub about potential security vulnerabilities 
+found in the specified repository, Trylen22/Email-scraper. The issues involve ex
+posed secrets such as Google OAuth Access Token, which were detected in the file
+ scr/token.json at line 1 of commit 996dcf03. These secrets are visible to anyon
+e with read access and pose a risk, especially if they fall into the wrong hands
+. GitHub recommends revoking these valid secrets to prevent any irreversible dam
+age. The sender is GitHub.com.
+
+================================================================================
+
+📧 Email 3/5
+────────────────────────────────────────────────────────────────────────────────
+From    : Trylen Stephens <tbs024@email.latech.edu>
+Subject : 
+
+Summary:
+────────────────────────────────────────
+There is no meaningful content in the text provided for summarization.
+
+================================================================================
+
+📧 Email 4/5
+────────────────────────────────────────────────────────────────────────────────
+From    : "PHYS 201 002 - Winter 2025 (Physics For Engr And Sci I)" <notifications@instructure.com>
+Subject : Assignment Graded: Quiz 3 - 1D and 2D kinematics, PHYS 201 002 - Winter 2025 (Physics For Engr And Sci I)
+
+Summary:
+────────────────────────────────────────
+The text describes an email notification about a graded quiz on 1D and 2D kinema
+tics (physics). The quiz was completed on Dec 20 at 7:50 pm. The recipient can r
+eview the assignment details through Canvas. The email is sent because the recip
+ient is enrolled in one or more classes using Canvas, and to change or turn off 
+email notifications, they need to visit a specific website location provided.
+
+================================================================================
+
+📧 Email 5/5
+────────────────────────────────────────────────────────────────────────────────
+From    : Fred from Fireflies <fred@fireflies.ai>
+Subject : Your Year in Meetings - See your 2024 Fireflies Recap!
+
+Summary:
+────────────────────────────────────────
+The text is a summary of the user's achievements in meetings during the year 202
+4, as recorded by an AI service called Fireflies. It encourages the user to open
+ their "Recap 2024" for a detailed look at their accomplishments. The user can a
+lso choose to stop receiving such email notifications from Fireflies.ai by refer
+ring to their privacy policy and terms of service.
+
+================================================================================
+

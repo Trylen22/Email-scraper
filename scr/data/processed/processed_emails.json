@@ -1,5 +1,15 @@
 [
     {
+        "subject": "[Trylen22/Email-scraper] Generic High Entropy Secret exposed on GitHub",
+        "from": "GitGuardian <security@getgitguardian.com>",
+        "body": "\">[Trylen22/Email-scraper] Generic High Entropy Secret exposed on GitHubGitGuardian has detected the following Generic High Entropy Secret exposed within your GitHub account.Details- Secret type:Generic High Entropy Secret- Repository: Trylen22/Email-scraper- Pushed date: December 21st 2024, 09:02:37 UTCFix this secret leakMark as false positiveA false positive can occur when the detection engine raises an alert for a secret that is not one and has never been one.You are receiving this email as part of ourGood Samaritan program, where we proactively alert GitHub users when one of their secret is inadvertently leaked on a public repository, helping secure the coding community.Need help to remediate an exposed secret? Read ourguideand never let another secret leave your local environment with GitGuardian's cli toolggshieldUnsubscribefrom these alerts.unsubscribe"
+    },
+    {
+        "subject": "[Trylen22/Email-scraper] Possible valid secrets detected",
+        "from": "GitHub <support@github.com>",
+        "body": "Action needed: Secrets detected in Trylen22/Email-scraper:\r\n\r\nPlease resolve these alerts\r\nAnyone with read access can view exposed secrets. Consider rotating and revoking each valid secret to avoid any irreversible damage.\r\n\r\n  Google OAuth Access Token\r\n  Secret detected in scr/token.json#L1 \u2022 commit 996dcf03\r\n  Review atYou are receiving this email because GitHub scanned for exposed tokens or private key credentials in your repository.\r\n\r\nThanks,\r\nGitHub.com"
+    },
+    {
         "subject": "",
         "from": "Trylen Stephens <tbs024@email.latech.edu>",
         "body": "No meaningful content."
@@ -13,15 +23,5 @@
         "subject": "Your Year in Meetings - See your 2024 Fireflies Recap!",
         "from": "Fred from Fireflies <fred@fireflies.ai>",
         "body": "THi Trylen,Your2024Recapis hereHow did you spend time in meetingsfor the year 2024?Open My RecapAs we look back on the past year,\r\n                  we'reamazedby all theincredible thingsyou'veaccomplished.Recap 2024 shares some interesting highlights of your year with Fireflies.Open My RecapTo stop receiving email notifications like this,Fireflies.ai \u2022 5424 Sunol Blvd , Ste 10-531 Pleasanton, CA 94566Privacy\r\n              Policy\u2022Terms of\r\n              Service"
-    },
-    {
-        "subject": "Thank you for your recent purchase for Call of Duty\u00ae",
-        "from": "Steam Support <noreply@steampowered.com>",
-        "body": "Hello tegenev22\r\n\nThank you for your recent transaction on Steam.  To view the details, please\r\nvisitCheers,\nThe Steam Team\n\n--\n\nThis notification has been sent to the email address associated with your Steam account.\n\nThis email message was auto-generated. Please do not respond. If you need additional help, please visit Steam Support.\u00a9 Valve Corporation\nAll rights reserved. All trademarks are property of their respective owners in the US and other countries.\n\n--\n\nView this message on the web:"
-    },
-    {
-        "subject": "You have successfully added funds to your Steam Wallet",
-        "from": "Steam Support <noreply@steampowered.com>",
-        "body": "Hello tegenev22\r\n\nThank you for your recent transaction on Steam.  To view the details, please\r\nvisitCheers,\nThe Steam Team\n\n--\n\nThis notification has been sent to the email address associated with your Steam account.\n\nThis email message was auto-generated. Please do not respond. If you need additional help, please visit Steam Support.\u00a9 Valve Corporation\nAll rights reserved. All trademarks are property of their respective owners in the US and other countries.\n\n--\n\nView this message on the web:"
     }
 ]
