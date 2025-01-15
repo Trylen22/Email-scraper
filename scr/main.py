@@ -44,7 +44,7 @@ def main():
     # Command-line arguments
     parser = argparse.ArgumentParser(description="Email Scraper CLI")
     parser.add_argument("--max-emails", type=int, default=5, help="Maximum number of emails to fetch (default: 5)")
-    parser.add_argument("--format", type=str, choices=['json', 'html', 'text'], default='text', 
+    parser.add_argument("--format", type=str, choices=['json', 'html', 'text'], default='hml', 
                       help="Output format (default: text)")
     parser.add_argument("--output-file", type=str, help="Output file path (default: based on format)")
     parser.add_argument("--query", type=str, default="", help="Optional query to filter emails")

@@ -2,13 +2,7 @@ import json
 from datetime import datetime
 
 def generate_json_report(emails, output_file):
-    """
-    Generate a JSON report of the processed emails.
-
-    Args:
-        emails (list): A list of processed email dictionaries.
-        output_file (str): The output file path for the JSON report.
-    """
+    """Generate a JSON report of the processed emails."""
     report_data = {
         "report_generated_at": datetime.now().isoformat(),
         "email_count": len(emails),
@@ -16,8 +10,8 @@ def generate_json_report(emails, output_file):
     }
     
     try:
-        with open(output_file, "w") as f:
-            json.dump(report_data, f, indent=4)
+        with open(output_file, "w", encoding='utf-8') as f:
+            json.dump(report_data, f, indent=4, ensure_ascii=False)
         print(f"JSON report saved to {output_file}")
     except Exception as e:
         print(f"Error writing JSON report: {str(e)}")
@@ -45,6 +39,7 @@ def generate_html_report(processed_emails, output_file):
     html = f"""
     <html>
     <head>
+        <meta charset="utf-8">
         <style>
             body {{
                 font-family: 'Courier New', monospace;
@@ -112,17 +107,6 @@ def generate_html_report(processed_emails, output_file):
                 overflow: visible;
                 width: auto;
             }}
-            .links {{
-                margin-top: 15px;
-                color: #888;
-            }}
-            .links a {{
-                color: #666;
-                text-decoration: none;
-            }}
-            .links a:hover {{
-                color: #fff;
-            }}
         </style>
     </head>
     <body>
@@ -132,7 +116,7 @@ def generate_html_report(processed_emails, output_file):
         </div>
         
         <div class="email-count">
-            📧 Processed {len(processed_emails)} Emails
+            >> Processed {len(processed_emails)} Emails
         </div>
         
         <div class="ascii-border">{'='*105}</div>
@@ -141,16 +125,9 @@ def generate_html_report(processed_emails, output_file):
     for i, email in enumerate(processed_emails, 1):
         html += f"""
         <div class="email-container">
-            <div class="subject">📨 {email['subject'] or 'No Subject'}</div>
+            <div class="subject">>> {email['subject'] or 'No Subject'}</div>
             <div class="from">From: {email['from']}</div>
             <div class="summary">{email['summary']}</div>
-            
-            {f'''
-            <div class="links">
-                <div class="ascii-border">{'─'*40}</div>
-                {'<br>'.join(f'• {url}' for url in email['urls'])}
-            </div>
-            ''' if 'urls' in email and email['urls'] else ''}
         </div>
         """
     
@@ -162,32 +139,25 @@ def generate_html_report(processed_emails, output_file):
     </html>
     """
     
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html)
 
 def generate_text_report(processed_emails, output_file):
     """Generate a human-readable text report of email summaries."""
-    with open(output_file, 'w') as f:
+    with open(output_file, 'w', encoding='utf-8') as f:
         f.write("\n" + "="*105 + "\n")
         f.write("                                               EMAIL SUMMARY REPORT                                               \n")
         f.write("="*105 + "\n\n")
         
         for i, email in enumerate(processed_emails, 1):
-            f.write(f"📧 Email {i}/{len(processed_emails)}\n")
+            f.write(f">> Email {i}/{len(processed_emails)}\n")
             f.write("─"*105 + "\n")
             f.write(f"From    : {email['from']}\n")
             f.write(f"Subject : {email['subject']}\n")
             f.write("\nSummary:\n")
             f.write("─"*40 + "\n")
-            # Wrap summary text at 100 characters instead of 80
             summary_lines = [email['summary'][i:i+100] for i in range(0, len(email['summary']), 100)]
             for line in summary_lines:
                 f.write(f"{line}\n")
-            
-            if 'urls' in email and email['urls']:
-                f.write("\nLinks Found:\n")
-                f.write("─"*40 + "\n")
-                for url in email['urls']:
-                    f.write(f"• {url}\n")
             
             f.write("\n" + "="*105 + "\n\n")

@@ -1,83 +1,84 @@
 
-================================================================================
-                           EMAIL SUMMARY REPORT                           
-================================================================================
+=========================================================================================================
+                                               EMAIL SUMMARY REPORT                                               
+=========================================================================================================
 
 📧 Email 1/5
-────────────────────────────────────────────────────────────────────────────────
-From    : GitGuardian <security@getgitguardian.com>
-Subject : [Trylen22/Email-scraper] Generic High Entropy Secret exposed on GitHub
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+From    : Unknown Sender
+Subject : No Subject
 
 Summary:
 ────────────────────────────────────────
-The text is a notification about a Generic High Entropy Secret being potentially
- exposed on the user's GitHub account in the repository named "Trylen22/Email-sc
-raper". The secret was pushed on December 21st, 2024. This alert is part of GitG
-uardian's Good Samaritan program which proactively alerts users about potential 
-secret leaks.
+[LOW] The email is a heartfelt Christmas greeting from an anonymous "Skull Watcher" to a recipient n
+amed "Mamaw June." It reflects on the passage of time, the enduring nature of love and kinship, and 
+the ephemeral nature of human existence. The content does not provide any urgent or required actions
+, course materials, exam schedules, or grades for a student, thus it falls into the lowest priority 
+category.
 
-The user has the option to mark this as a false positive if they 
-believe it's not a real secret or has never been one. They can also take steps t
-o remediate the exposed secret using GitGuardian's cli tool 'ggshield'. The user
- can also choose to unsubscribe from these alerts.
-
-================================================================================
+=========================================================================================================
 
 📧 Email 2/5
-────────────────────────────────────────────────────────────────────────────────
-From    : GitHub <support@github.com>
-Subject : [Trylen22/Email-scraper] Possible valid secrets detected
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+From    : Medium Daily Digest <noreply@medium.com>
+Subject : Your Machine, Your AI — The Ultimate Local Productivity Stack with Ollama | Volker Janz in Data Engineer Things
 
 Summary:
 ────────────────────────────────────────
-The text is a notification from GitHub about potential security vulnerabilities 
-found in the specified repository, Trylen22/Email-scraper. The issues involve ex
-posed secrets such as Google OAuth Access Token, which were detected in the file
- scr/token.json at line 1 of commit 996dcf03. These secrets are visible to anyon
-e with read access and pose a risk, especially if they fall into the wrong hands
-. GitHub recommends revoking these valid secrets to prevent any irreversible dam
-age. The sender is GitHub.com.
+[LOW] This email contains a list of various articles and blog posts from different authors on topics
+ such as AI, data engineering, coding, startup development, health, and dashboard design. The conten
+t is primarily free to read for non-members, with the exception of some articles that may be accessi
+ble only to members. The email also includes information about unsubscribing or changing the type of
+ email received (Weekly Digest). This is a general announcement and newsletter, not related to any s
+pecific assignment deadlines, exam schedules, grades, required actions, registration deadlines, or c
+ourse materials necessary for academic purposes.
 
-================================================================================
+=========================================================================================================
 
 📧 Email 3/5
-────────────────────────────────────────────────────────────────────────────────
-From    : Trylen Stephens <tbs024@email.latech.edu>
-Subject : 
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+From    : Dropbox <no-reply@em-s.dropbox.com>
+Subject : (6/9) Edit your photos and videos without leaving Dropbox
 
 Summary:
 ────────────────────────────────────────
-There is no meaningful content in the text provided for summarization.
+[LOW] This email from Dropbox is informing the recipient about image and video editing tools availab
+le within Dropbox, such as cropping, flipping, rotating, adjusting brightness, renaming files, and r
+eviewing edits without downloading videos. The email also mentions how to unsubscribe if desired. Fr
+om a student's perspective, this information is not urgent or required for academic purposes, so it 
+falls under the Low priority category.
 
-================================================================================
+=========================================================================================================
 
 📧 Email 4/5
-────────────────────────────────────────────────────────────────────────────────
-From    : "PHYS 201 002 - Winter 2025 (Physics For Engr And Sci I)" <notifications@instructure.com>
-Subject : Assignment Graded: Quiz 3 - 1D and 2D kinematics, PHYS 201 002 - Winter 2025 (Physics For Engr And Sci I)
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+From    : Handshake <handshake@g.joinhandshake.com>
+Subject : Your weekly jobs round-up: Bunchful, Schemmer Associates Inc, Thompson Creek Mine
 
 Summary:
 ────────────────────────────────────────
-The text describes an email notification about a graded quiz on 1D and 2D kinema
-tics (physics). The quiz was completed on Dec 20 at 7:50 pm. The recipient can r
-eview the assignment details through Canvas. The email is sent because the recip
-ient is enrolled in one or more classes using Canvas, and to change or turn off 
-email notifications, they need to visit a specific website location provided.
+[MEDIUM] This email contains job opportunities for internships and employment in various fields such
+ as Electrical Engineering, Internet & Software, and Natural Resources. The jobs are located remotel
+y, onsite, or in hybrid settings across different cities. Salary ranges vary from $17.50/hour to $37
+.08/hour, with some positions being unpaid internships. It also suggests the option to update career
+ interests if the current job postings are not preferred. This information is valuable for students 
+seeking job opportunities or internships in their respective fields.
 
-================================================================================
+=========================================================================================================
 
 📧 Email 5/5
-────────────────────────────────────────────────────────────────────────────────
-From    : Fred from Fireflies <fred@fireflies.ai>
-Subject : Your Year in Meetings - See your 2024 Fireflies Recap!
+─────────────────────────────────────────────────────────────────────────────────────────────────────────
+From    : DoorDash <no-reply@messages.doordash.com>
+Subject : Join DashPass and get 60% off 3 orders
 
 Summary:
 ────────────────────────────────────────
-The text is a summary of the user's achievements in meetings during the year 202
-4, as recorded by an AI service called Fireflies. It encourages the user to open
- their "Recap 2024" for a detailed look at their accomplishments. The user can a
-lso choose to stop receiving such email notifications from Fireflies.ai by refer
-ring to their privacy policy and terms of service.
+[HIGH] The email appears to offer a 30-day free trial of DoorDash's DashPass service to select users
+. This service provides benefits such as reduced delivery fees on eligible orders from participating
+ merchants that meet a minimum subtotal requirement. After the 30-day trial period ends, the user wi
+ll automatically be charged $9.99/month or $96/year for the subscription, plus any applicable taxes.
+ The offer is only available to new DashPass users or existing ones as determined by DoorDash, and t
+here are specific terms and conditions associated with it, including how to cancel the service.
 
-================================================================================
+=========================================================================================================
 
