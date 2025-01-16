@@ -1,7 +1,7 @@
 import subprocess
 
 class LocalModel:
-    def __init__(self, model_name="mistral"):
+    def __init__(self, model_name="tinyllama"):
         """
         Initialize the LocalModel instance with the specified model name.
         Ensure the Mistral model is installed and accessible via Ollama.
@@ -12,26 +12,19 @@ class LocalModel:
         self.model_name = model_name
 
     def summarize(self, text):
-        """
-        Generate a summary for the provided text using the Mistral model via Ollama.
+        """Generate a summary for the provided text using the model via Ollama."""
+        print(f"\nUsing model: {self.model_name}")  # Debug print for model name
         
-        Args:
-            text (str): The input text to summarize.
+        # Simplified prompt for better results with smaller models
+        prompt = f"""Classify this email as HIGH, MEDIUM, or LOW priority:
+HIGH = urgent deadlines, grades, required actions
+MEDIUM = course materials, office hours
+LOW = general info, optional events
 
-        Returns:
-            str: The generated summary or an error message if something goes wrong.
-        """
-        # Enhanced prompt for priority-aware summarization
-        prompt = f"""Analyze this email from a student's perspective. Based on these categories:
-
-HIGH: Assignment deadlines, exam schedules, grades, required actions, registration deadlines
-MEDIUM: Course materials, study resources, office hours, group projects
-LOW: General announcements, optional events, newsletters
-
-Email content:
+Email:
 {text}
 
-Start your response with the priority level in brackets [HIGH/MEDIUM/LOW], then provide a brief, focused summary."""
+Reply with priority in brackets, then a brief summary in one sentence."""
         
         try:
             # Run Ollama command

@@ -101,7 +101,7 @@ def main():
         return
 
     # Step 4: Summarize emails using the model
-    model = LocalModel("mistral")
+    model = LocalModel("tinyllama")
     summarize_start = time.time()
     total_emails = len(processed_emails)
     for index, email in enumerate(processed_emails, 1):

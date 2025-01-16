@@ -1,5 +1,10 @@
 [
     {
+        "subject": "[Trylen22/Email-scraper] Possible valid secrets detected",
+        "from": "GitHub <support@github.com>",
+        "body": "Action needed: Secrets detected in Trylen22/Email-scraper:\r\n\r\nPlease resolve these alerts\r\nAnyone with read access can view exposed secrets. Consider rotating and revoking each valid secret to avoid any irreversible damage.\r\n\r\n  Google OAuth Access Token\r\n  Secret detected in scr/token.json#L1 \u2022 commit a77ddd3f\r\n  Review atYou are receiving this email because GitHub scanned for exposed tokens or private key credentials in your repository.\r\n\r\nThanks,\r\nGitHub.com"
+    },
+    {
         "subject": "You have activated your full account",
         "from": "Google Cloud <googlecloud@google.com>",
         "body": "Google Cloud  \r\n<Thanks for activating your full account.\r\n\r\nYou now have full access to Google Cloud products, including monthly usage  \r\nof services in the Free Tier program  \r\n<You can set up budget alerts  \r\n<to track charges on your billing account.\r\n\r\nGo to your console  \r\n<See you in the cloud,\r\n\r\nThe Google Cloud Team\r\n\r\nFAQ  \r\n<Documentation  \r\n<Forums  \r\n<Billing  \r\n<Google Cloud  \r\n<Google LLC 1600 Amphitheatre Parkway, Mountain View, CA 94043\r\n\r\nYou have received this email to update you about important information  \r\nregarding your Google Cloud account.\r\n\r\nGoogle Cloud blog  \r\n<GitHub  \r\n<LinkedIn  \r\n<Twitter  \r\n<Facebook  \r\n<"
@@ -17,11 +22,6 @@
     {
         "subject": "Re: Homework closed",
         "from": "Joseph Cortez <jcortez@latech.edu>",
-        "body": "No meaningful content."
-    },
-    {
-        "subject": "Homework closed",
-        "from": "Trylen Stephens <tbs024@email.latech.edu>",
         "body": "No meaningful content."
     }
 ]
