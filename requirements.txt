@@ -5,3 +5,6 @@ pandas
 bs4
 matplotlib
 requests
+argparse
+re
+subprocess
