@@ -1,7 +1,7 @@
 import subprocess
 
 class LocalModel:
-    def __init__(self, model_name="tinyllama"):
+    def __init__(self, model_name="deepseek-r1:1.5b"):
         """
         Initialize the LocalModel instance with the specified model name.
         Ensure the Mistral model is installed and accessible via Ollama.
@@ -12,19 +12,20 @@ class LocalModel:
         self.model_name = model_name
 
     def summarize(self, text):
-        """Generate a summary for the provided text using the model via Ollama."""
-        print(f"\nUsing model: {self.model_name}")  # Debug print for model name
-        
-        # Simplified prompt for better results with smaller models
-        prompt = f"""Classify this email as HIGH, MEDIUM, or LOW priority:
-HIGH = urgent deadlines, grades, required actions
-MEDIUM = course materials, office hours
-LOW = general info, optional events
+        """Generate a concise, focused summary for the provided text."""
+        prompt = f"""Summarize this email in one clear sentence, focusing only on the main point or action required:
 
 Email:
 {text}
 
-Reply with priority in brackets, then a brief summary in one sentence."""
+Guidelines:
+- Use 20 words or less
+- Focus on the key message or action
+- Omit redundant details
+- Don't repeat URLs or contact information
+- Don't use phrases like "Key Details" or "Action Items"
+
+Reply with just the summary."""
         
         try:
             # Run Ollama command
@@ -36,11 +37,9 @@ Reply with priority in brackets, then a brief summary in one sentence."""
             )
             
             if result.returncode != 0:
-                error_message = result.stderr.strip()
-                print(f"Error in calling Ollama:\n{error_message}")
-                return f"Error in generating summary: {error_message}"
+                return f"Error in generating summary: {result.stderr.strip()}"
             
-            # Clean up and format the summary
+            # Clean up the summary
             summary = result.stdout.strip()
             if "Summary:" in summary:
                 summary = summary.split("Summary:")[-1].strip()

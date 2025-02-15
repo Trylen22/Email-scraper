@@ -3,73 +3,222 @@
     <head>
         <meta charset="utf-8">
         <style>
+            :root {
+                --main-bg: #000000;
+                --secondary-bg: #0a0a0a;
+                --card-bg: #111111;
+                --rose-pink: #FF69B4;
+                --rose-pink-dim: #cc5490;
+                --text-primary: #FF69B4;
+                --text-secondary: #cc5490;
+                --priority-high: #ff1493;    /* Deep pink */
+                --priority-medium: #db7093;  /* Pale violet red */
+                --priority-low: #ffb6c1;     /* Light pink */
+            }
+            
             body {
                 font-family: 'Courier New', monospace;
-                background-color: #0c0c0c;
-                color: #cccccc;
-                max-width: 1000px;
+                background-color: var(--main-bg);
+                color: var(--text-secondary);
+                max-width: 1200px;
                 margin: 0 auto;
                 padding: 20px;
                 line-height: 1.6;
             }
+            
             .header {
                 text-align: center;
                 margin-bottom: 40px;
+                background-color: var(--main-bg);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(255, 105, 180, 0.1);
+                border: 1px solid var(--text-secondary);
             }
+            
             .ascii-art {
                 white-space: pre;
                 font-family: monospace;
                 display: block;
-                color: #ffffff;
+                color: var(--text-primary);
                 margin: 20px auto;
                 font-size: 14px;
                 line-height: 1.2;
-                width: fit-content;
-                padding: 0;
+                text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
             }
+            
+            .priority-section {
+                flex: 1;
+                background-color: var(--card-bg);
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(255, 105, 180, 0.1);
+                overflow: hidden;
+                transition: all 0.3s ease;
+                border: 1px solid var(--text-secondary);
+            }
+            
+            .priority-section:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(255, 105, 180, 0.2);
+            }
+            
+            .high-priority .priority-header {
+                background-color: var(--priority-high);
+                color: var(--main-bg);
+            }
+            
+            .medium-priority .priority-header {
+                background-color: var(--priority-medium);
+                color: var(--main-bg);
+            }
+            
+            .low-priority .priority-header {
+                background-color: var(--priority-low);
+                color: var(--main-bg);
+            }
+            
             .email-container {
-                border: 1px solid #333;
-                margin: 20px 0;
-                padding: 20px;
-                background-color: #111;
+                margin: 10px;
+                padding: 15px;
+                background-color: var(--secondary-bg);
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                border-left: 3px solid var(--text-secondary);
             }
+            
+            .email-container:hover {
+                transform: translateX(5px);
+                background-color: var(--card-bg);
+                border-left-color: var(--text-primary);
+            }
+            
             .subject {
-                color: #ffffff;
+                color: var(--text-primary);
                 font-weight: bold;
-                font-size: 1.2em;
-                border-bottom: 1px solid #333;
+                margin-bottom: 10px;
                 padding-bottom: 5px;
+                border-bottom: 1px solid var(--text-secondary);
             }
+            
             .from {
                 color: #888;
-                margin: 10px 0;
+                font-size: 0.9em;
+                margin-bottom: 15px;
+                padding-left: 10px;
             }
+            
             .summary {
-                margin-top: 15px;
+                color: var(--text-secondary);
+                line-height: 1.4;
                 padding: 10px;
-                background-color: #161616;
-                border-left: 3px solid #333;
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 3px;
             }
-            .timestamp {
-                color: #666;
-                text-align: center;
-                margin-top: 40px;
-                font-size: 0.8em;
+            
+            .email-link {
+                color: var(--text-primary);
+                text-decoration: none;
+                border-bottom: 1px dotted var(--text-primary);
             }
+            
+            .email-link:hover {
+                opacity: 0.8;
+            }
+            
+            .terminal-line {
+                color: var(--text-primary);
+                margin: 10px 0;
+                opacity: 0.8;
+            }
+            
+            .terminal-line::before {
+                content: ">";
+                margin-right: 10px;
+                color: var(--text-primary);
+            }
+            
             .email-count {
                 text-align: center;
-                color: #fff;
+                color: var(--text-primary);
                 margin: 20px 0;
                 font-size: 1.2em;
+                text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
             }
-            .ascii-border {
-                color: #333;
-                margin: 10px 0;
-                white-space: pre;
-                overflow: visible;
-                width: auto;
+            
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: var(--secondary-bg);
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background: var(--text-secondary);
+                border-radius: 4px;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--text-primary);
+            }
+            
+            .priority-container {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            .priority-header {
+                padding: 15px;
+                font-weight: bold;
+                text-align: center;
+                cursor: pointer;
+                user-select: none;
+                position: relative;
+                border-bottom: 2px solid #222;
+            }
+            .priority-header::after {
+                content: '▼';
+                position: absolute;
+                right: 15px;
+                transition: transform 0.3s ease;
+            }
+            .priority-section.expanded .priority-header::after {
+                transform: rotate(180deg);
+            }
+            .email-list {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+            .priority-section.expanded .email-list {
+                max-height: 600px;
+                overflow-y: auto;
+            }
+            .email-container.expanded .summary {
+                display: block;
             }
         </style>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.priority-header').forEach(header => {
+                    header.addEventListener('click', function() {
+                        const section = this.parentElement;
+                        section.classList.toggle('expanded');
+                    });
+                });
+
+                document.querySelectorAll('.email-container').forEach(container => {
+                    container.addEventListener('click', function(e) {
+                        if (!e.target.closest('.summary')) {
+                            this.classList.toggle('expanded');
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
     <body>
         <div class="header">
@@ -92,42 +241,72 @@
             >> Processed 5 Emails
         </div>
         
-        <div class="ascii-border">=========================================================================================================</div>
+        <div class="terminal-line">System initialized...</div>
+        <div class="terminal-line">Sorting by priority...</div>
+        
+        <div class="priority-container">
     
-        <div class="email-container">
-            <div class="subject">>> Astronomical Society Observing Night</div>
-            <div class="from">From: Elizabeth G Johnson <egj003@latech.edu></div>
-            <div class="summary">HIGH (urgent) priority: "Tonight the Astronomical Society will be hosting its first ever observational night! We will meet at IESB 308 at 6 pm for a short meeting then we will head to the IESB parking lot to look at the sky."</div>
-        </div>
+            <div class="priority-section high-priority">
+                <div class="priority-header">HIGH Priority (0)</div>
+                <div class="email-list">
         
-        <div class="email-container">
-            <div class="subject">>> [LaTech Students] Workday Student Training Sessions (For Students & Staff): Registration & Advising</div>
-            <div class="from">From: Leslie Lofton <llofton@latech.edu></div>
-            <div class="summary">Email: [Priority in brackets] Visit events.latech.edu for Louisiana Tech event information. Attach Organizational Interest List and Student’s-l Mailing List. For HIGH priority, find your organizational interests at https://events.latech.edu/ or studentss-l@lists.latech.edu 
-Summary in one sentence: Attend the designated event on events.latech.edu for Louisiana Tech and stay connected through Student’s-l Mailing List to keep up with relevant organizational information.</div>
-        </div>
+                </div>
+            </div>
         
-        <div class="email-container">
-            <div class="subject">>> Your weekly jobs round-up: Bernhard, Power & Control Systems, California Institute of Technology</div>
-            <div class="from">From: Handshake <handshake@g.joinhandshake.com></div>
-            <div class="summary">Email: "Your weekly jobs round-up"
-Subject line: High, medium, or low priority jobs for week starting today</div>
-        </div>
+            <div class="priority-section medium-priority">
+                <div class="priority-header">MEDIUM Priority (0)</div>
+                <div class="email-list">
         
-        <div class="email-container">
-            <div class="subject">>> [Coes-ugradstudents-l] TODAY - Entergy Industry Talk</div>
-            <div class="from">From: Grace Clay <gclay@latech.edu></div>
-            <div class="summary">HIGH: Urgent deadlines and required actions for Coes-UGradStudent@Lists.Latech.EDU mailing list (i.e., grade(s) or required action).</div>
-        </div>
+                </div>
+            </div>
         
-        <div class="email-container">
-            <div class="subject">>> Black Student Union - EMT Fest</div>
-            <div class="from">From: Julienne Cyprian <jmc180@latech.edu></div>
-            <div class="summary">HIGH Priority: The text mentions that the upcoming events in University Hall on Wednesday night will be hosted by the Black Student Union and Elite Modeling Troop. The show is set to stand as black culture representation, with scenes focused around different types of black music festivals taking place at L-Booth from 11 am to 2 pm. The email also mentions a black history trivai at the L-Booth from 11 am to 2 pm.</div>
-        </div>
+            <div class="priority-section low-priority">
+                <div class="priority-header">LOW Priority (5)</div>
+                <div class="email-list">
         
-        <div class="timestamp">
-            Report generated at: 2025-02-05 16:17:50
+                    <div class="email-container">
+                        <div class="subject">>> Baseball and Softball Saturday Schedule Update</div>
+                        <div class="from">From: Louisiana Tech Athletics <updates@go.latechsports.com></div>
+                        <div class="summary">
+                            Read scheduled updates on all baseball and softball games at Louisiana Tech Athletics. Visit Facebook, Instagram, or Twitter for weather and game schedules, check contact information for support.
+                        </div>
+                    </div>
+            
+                    <div class="email-container">
+                        <div class="subject">>>   Love is in the air  </div>
+                        <div class="from">From: Call of Duty <callofduty@comms.activision.com></div>
+                        <div class="summary">
+                            Promotional emails and news updates for different games, including Call of Duty, Call of Duty 3, and others.
+                        </div>
+                    </div>
+            
+                    <div class="email-container">
+                        <div class="subject">>> FAA grading results + changes</div>
+                        <div class="from">From: Trylen Stephens <tbs024@email.latech.edu></div>
+                        <div class="summary">
+                            No meaningful content in the email.
+                        </div>
+                    </div>
+            
+                    <div class="email-container">
+                        <div class="subject">>> Film Club - Malcolm X</div>
+                        <div class="from">From: Jackson Dammers <jhd020@latech.edu></div>
+                        <div class="summary">
+                            We will be watching Malcolm X at 6 pm instead of our usual time due to the longer duration.
+                        </div>
+                    </div>
+            
+                    <div class="email-container">
+                        <div class="subject">>> [LaTech Students] Your Voice Matters! Take Our Quick Alcohol Survey & Help Campus Wellness!</div>
+                        <div class="from">From: Ashley Owen <aowen@latech.edu></div>
+                        <div class="summary">
+                            Visit event.latech.edu to get Louisiana Tech event information.
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        
         </div>
     </body>
     </html>
