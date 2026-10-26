@@ -1,60 +1,51 @@
+# Email scraper
+
+A Python command-line experiment that reads Gmail messages, processes their contents, summarizes them with a local Ollama model, and writes JSON, HTML, or text reports.
+
+## Workflow
+
+1. Authenticate with the Gmail API using the read-only scope.
+2. Fetch messages matching the requested query and count.
+3. Process message bodies and extracted links.
+4. Summarize message text using the configured local model.
+5. Generate a report under `reports/` or at the requested output path.
+
+## Local setup
+
+Use a virtual environment. The current `requirements.txt` includes standard-library entries (`re` and `subprocess`) that are not installable packages; install the third-party dependencies explicitly:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install google-auth google-auth-oauthlib google-api-python-client pandas beautifulsoup4 matplotlib requests
 ```
-                     ______                _ __   _____                                
-                    / ____/___ ___  ____ _(_) /  / ___/______________ _____  ___  _____
-                   / __/ / __ `__ \/ __ `/ / /   \__ \/ ___/ ___/ __ `/ __ \/ _ \/ ___/
-                  / /___/ / / / / / /_/ / / /   ___/ / /__/ /  / /_/ / /_/ /  __/ /    
-                 /_____/_/ /_/ /_/\__,_/_/_/   /____/\___/_/   \__,_/ .___/\___/_/     
-                                                                    /_/                  
-                                    [ Email Processing Made Simple ]
 
-================================================================================
+Install Ollama separately and download the model used by `scr/main.py`:
 
-📧 Description
--------------
-A command-line tool for fetching, processing, and summarizing emails using Gmail API
-and local AI model integration. Efficiently processes emails and generates detailed
-JSON reports with summaries.
+```bash
+ollama pull deepseek-r1:1.5b
+```
 
-🚀 Features
-----------
-- Gmail API Integration
-- Local AI Model Summarization
-- URL Extraction & Processing
-- JSON Report Generation
-- Progress Visualization
-- Cross-Platform Support
+Create a Gmail API desktop OAuth client for your own account and save its configuration as `client_secret.json` in the working directory. Run from the repository root so authentication and report paths resolve consistently:
 
-⚙️ Installation
--------------
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/Email-scraper.git
-   cd Email-scraper
-   ```
+```bash
+.venv/bin/python scr/main.py --max-emails 5 --format json --query 'newer_than:7d'
+```
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+The first run opens the OAuth consent flow. Subsequent runs reuse local `token.json`. Use `--format html` or `--format text` for other report formats; these modes may open a browser or viewer. `--r1` removes model thinking tags from summaries.
 
-3. Set up Gmail API credentials:
-   - Visit Google Cloud Console
-   - Enable Gmail API
-   - Download credentials.json
-   - Place in project root directory
-     
+## Source map
 
-📁 Project Structure
------------------
+| File | Responsibility |
+|---|---|
+| `scr/main.py` | CLI and pipeline orchestration |
+| `scr/authemail.py` | Gmail OAuth and service creation |
+| `scr/scrape_emails.py` | Message retrieval |
+| `scr/process_emails.py` | Message processing |
+| `scr/local_model.py` | Ollama invocation |
+| `scr/report_generator.py` | Report output |
 
-Email-scraper/
-├── scr/
-│ ├── main.py # Main application entry
-│ ├── authemail.py # Gmail authentication
-│ ├── scrape_emails.py # Email fetching logic
-│ ├── process_emails.py # Email processing
-│ ├── local_model.py # AI model integration
-│ ├── report_generator.py # JSON report creation
-│ └── ascii_art.py # Visual elements
-├── requirements.txt
-└── README.md
+## Status and data
+
+This is an experimental personal workflow with unpinned dependencies and several older scripts. Summaries require review and are not authoritative task assignments. The current portfolio update did not authenticate to Gmail, read a mailbox, or record personal email data.
+
+Keep OAuth files, tokens, reports, and email exports local. The ignore rules prevent new copies from being staged; they do not remove files from earlier Git history. Only use accounts and message data you are authorized to process.
