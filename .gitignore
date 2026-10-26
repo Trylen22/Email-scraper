@@ -1,2 +1,12 @@
 scr/client_secret.json
 scr/token.json
+
+# Local Google OAuth credentials and grants (including alternate layouts).
+**/token.json
+**/credentials.json
+**/client_secret*.json
+
+# Local environment secrets; sanitized templates may be committed.
+.env
+.env.*
+!.env.example
